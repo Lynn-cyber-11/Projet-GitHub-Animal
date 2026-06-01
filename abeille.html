@@ -13,7 +13,6 @@
             font-weight: 300;
             color: #2e2720;
             background: #f7f3ee;
-            /* Texture papier très légère */
             background-image: 
                 radial-gradient(#e6dfd3 1px, transparent 1px),
                 radial-gradient(#e6dfd3 1px, transparent 1px);
@@ -386,15 +385,16 @@
 
         /* ── gestes ── */
         .gestes {
-            padding: 120px 40px;
+            padding: 80px 40px; /* Réduit de 120px à 80px */
             text-align: center;
             position: relative;
+            background: linear-gradient(to bottom, #f7f3ee, #fff8e1);
         }
 
         .gestes::before {
             content: '';
             position: absolute;
-            top: 60px;
+            top: 40px; /* Déplacé de 60px à 40px */
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
@@ -467,13 +467,13 @@
 
         /* ── footer ── */
         footer {
-            padding: 80px 40px 40px;
+            padding: 40px 40px 40px; /* Réduit le padding haut de 80px à 40px */
+            margin-top: 0; /* Supprime la marge du haut */
             text-align: center;
             color: #b0a090;
             font-size: 0.8em;
             letter-spacing: 2px;
             position: relative;
-            margin-top: 60px;
         }
 
         footer::before {
@@ -543,6 +543,10 @@
             .citation {
                 padding: 20px;
                 font-size: 1.3em;
+            }
+
+            .gestes {
+                padding: 60px 25px; /* Encore plus réduit sur mobile */
             }
         }
 
@@ -636,25 +640,22 @@
         </div>
     </div>
 
- <!-- gestes -->
-<div class="gestes" id="agir">
-    <h2>Quelques gestes simples</h2>
-    <ul class="gestes-liste">
-        <li><span>Planter des fleurs mellifères : qui produisent du nectar et du pollen exploitables par les abeilles domestiques et d’autres insectes pollinisateurs</span></li>
-        <li><span>Laisser un coin d'herbe haute dans le jardin</span></li>
-        <li><span>Éviter les pesticides chez soi</span></li>
-        <li><span>Installer un hôtel à insectes</span></li>
-        <li><span>Acheter son miel à un apiculteur local</span></li>
-    </ul>
-</div>
-
-    <!-- photo finale -->
-    <div class="photo">
-        <img src="https://images.unsplash.com/photo-1520412099551-3b1cc3b95a5f?w=1600&q=80" alt="Abeille sur fleur">
+    <!-- gestes -->
+    <div class="gestes" id="agir">
+        <h2>Quelques gestes simples</h2>
+        <ul class="gestes-liste">
+            <li><span>Planter des fleurs mellifères</span></li>
+            <li><span>Laisser un coin d'herbe haute dans le jardin</span></li>
+            <li><span>Éviter les pesticides chez soi</span></li>
+            <li><span>Installer un hôtel à insectes</span></li>
+            <li><span>Acheter son miel à un apiculteur local</span></li>
+        </ul>
     </div>
 
     <footer>
-        <div class="signature">— Sauvons les abeilles !!!>
+        <div class="signature">— Avec amour, pour les abeilles</div>
+        <div class="date">Carnet tenu depuis 2024</div>
+        <div style="margin-top: 20px; opacity: 0.7;">Photos : Unsplash</div>
     </footer>
 
     <script>
