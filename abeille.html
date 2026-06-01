@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abeilles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            color: #2e2720;
+            background: #f7f3ee;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ── nav ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 45px;
+            background: rgba(247, 243, 238, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .nom {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #3a3020;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8a7a60;
+            font-size: 0.78em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-left: 35px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: #c4880a; }
+
+        /* ── hero ── */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-texte {
+            position: absolute;
+            bottom: 80px;
+            left: 50px;
+            max-width: 600px;
+            color: white;
+        }
+
+        .hero-texte .petit {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .hero-texte h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8em, 6vw, 5em);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-texte h1 em {
+            font-style: italic;
+            color: #f0d060;
+        }
+
+        .hero-texte p {
+            font-size: 1.05em;
+            color: rgba(255,255,255,0.75);
+            max-width: 440px;
+        }
+
+        /* ── section texte ── */
+        .texte {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .texte .chiffre {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5em;
+            color: #daa520;
+            line-height: 1;
+        }
+
+        .texte .label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #a09080;
+            margin-bottom: 40px;
+        }
+
+        .texte p {
+            color: #5a4e3d;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .texte .citation {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5em;
+            font-style: italic;
+            color: #5a4a2f;
+            margin: 50px 0;
+            line-height: 1.5;
+            padding: 0 20px;
+            border-left: 2px solid #daa520;
+            text-align: left;
+        }
+
+        /* ── image pleine largeur ── */
+        .photo {
+            width: 100%;
+            height: 65vh;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ── galerie ── */
+        .galerie {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 80vh;
+        }
+
+        .galerie img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .galerie .cote-texte {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            background: #3b3225;
+            color: #d4c8b0;
+        }
+
+        .galerie .cote-texte .interieur {
+            max-width: 380px;
+        }
+
+        .galerie .cote-texte h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2em;
+            font-weight: 400;
+            color: #e8dcc8;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .galerie .cote-texte p {
+            font-size: 0.95em;
+            color: #a89878;
+            margin-bottom: 15px;
+        }
+
+        /* ── gestes ── */
+        .gestes {
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .gestes h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4em;
+            font-weight: 400;
+            color: #2e2318;
+            margin-bottom: 50px;
+        }
+
+        .gestes-liste {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .gestes-liste li {
+            list-style: none;
+            padding: 16px 0;
+            border-bottom: 1px solid #e0d6c8;
+            font-size: 1.05em;
+            color: #5a4e3d;
+        }
+
+        .gestes-liste li::before {
+            content: '✦ ';
+            color: #daa520;
+        }
+
+        /* ── footer ── */
+        footer {
+            padding: 60px 40px;
+            text-align: center;
+            color: #b0a090;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+        }
+
+        /* ── mobile ── */
+        @media (max-width: 700px) {
+            nav { padding: 16px 25px; }
+            .hero-texte { left: 25px; bottom: 50px; }
+            .texte { padding: 80px 25px; }
+            .galerie {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .galerie img { height: 50vh; }
+            .galerie .cote-texte { padding: 50px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nom">ABEILLES</div>
+        <div>
+            <a href="#connaitre">Connaître</a>
+            <a href="#agir">Agir</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <div class="hero">
+        <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1600&q=80" alt="Abeille sur une fleur">
+        <div class="hero-texte">
+            <div class="petit">Depuis 100 millions d'années</div>
+            <h1>Ces petites choses qui font <em>tout</em></h1>
+            <p>On ne les remarque presque plus. Et pourtant, sans elles, nos assiettes seraient bien plus vides.</p>
+        </div>
+    </div>
+
+    <!-- texte central -->
+    <div class="texte" id="connaitre">
+        <div class="chiffre">75%</div>
+        <div class="label">de nos cultures en dépendent</div>
+        <p>Les abeilles pollinisent les fruits, les légumes, les oléagineux. Elles le font silencieusement, gratuitement, depuis bien avant que nous soyons là.</p>
+
+        <div class="citation">Une abeille, dans toute sa vie, ne produira qu'un douzième de cuillère à café de miel. Et elle aura butiné des millions de fleurs.</div>
+
+        <p>Une colonie, c'est 60 000 individus. Chacun sait exactement quoi faire, quand, et pour combien de temps. Pas un mot, pas un chef. Juste un ordre silencieux qui fonctionne depuis des millions d'années.</p>
+    </div>
+
+    <!-- photo pleine largeur -->
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=1600&q=80" alt="Miel coulant d'une ruche">
+    </div>
+
+    <!-- galerie texte + image -->
+    <div class="galerie">
+        <div class="cote-texte">
+            <div class="interieur">
+                <h2>Un déclin silencieux</h2>
+                <p>En dix ans, le nombre de colonies a chuté de 30%. Pesticides, maladies, destruction des habitats, monocultures...</p>
+                <p>Les abeilles sauvages disparaissent encore plus vite. La plupart des gens ne savent même pas qu'elles existent.</p>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1569663709457-11c3e07885f5?w=1200&q=80" alt="Abeille en gros plan">
+    </div>
+
+    <!-- gestes -->
+    <div class="gestes" id="agir">
+        <h2>Quelques gestes simples</h2>
+        <ul class="gestes-liste">
+            <li>Planter des fleurs mellifères</li>
+            <li>Laisser un coin d'herbe haute dans le jardin</li>
+            <li>Éviter les pesticides chez soi</li>
+            <li>Installer un hôtel à insectes</li>
+            <li>Acheter son miel à un apiculteur local</li>
+        </ul>
+    </div>
+
+    <!-- photo finale -->
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=1600&q=80" alt="Champ de fleurs">
+    </div>
+
+    <footer>
+        fait pour les abeilles, avant tout
+    </footer>
+
+</body>
+</html>
