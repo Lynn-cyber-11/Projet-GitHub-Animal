@@ -5,7 +5,7 @@ Site web dédié aux animaux, réalisé dans le cadre d'un cours d'informatique 
 🔗 **Site en ligne :**  
 https://lynn-cyber-11.github.io/Projet-GitHub-Animal/
 
-## Technologies
+## Contenu et ressources
 
 - HTML  
 - CSS  
