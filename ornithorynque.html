@@ -17,11 +17,10 @@
       --amber: #c4843a;
       --cream: #faf6ee;
       --gold: #d4a853;
-      --shadow: rgba(26, 18, 8, 0.15);
+      --shadow: rgba(26,18,8,.15);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -29,7 +28,6 @@
       background-color: var(--cream);
       color: var(--ink);
       overflow-x: hidden;
-      cursor: default;
     }
 
     /* ── HERO ── */
@@ -37,7 +35,6 @@
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
       position: relative;
       overflow: hidden;
     }
@@ -91,11 +88,7 @@
       margin-bottom: 2rem;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--water);
-      display: block;
-    }
+    h1 em { font-style: italic; color: var(--water); display: block; }
 
     .hero-desc {
       font-size: 1.2rem;
@@ -120,6 +113,14 @@
       border-radius: 2rem;
     }
 
+    .status-dot {
+      width: .45rem;
+      height: .45rem;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
     .hero-right {
       position: relative;
       overflow: hidden;
@@ -131,20 +132,6 @@
       object-fit: cover;
       object-position: center 30%;
       display: block;
-      transition: transform 8s ease;
-    }
-
-    .hero:hover .hero-img-main { transform: scale(1.03); }
-
-    .hero-caption {
-      position: absolute;
-      bottom: 2rem;
-      right: 1.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      color: rgba(255,255,255,.7);
-      letter-spacing: .1em;
-      writing-mode: vertical-rl;
     }
 
     .scroll-hint {
@@ -166,44 +153,20 @@
       animation: bobble 2.5s ease-in-out infinite;
     }
 
-    .scroll-hint::after {
-      content: '↓';
-      font-size: 1rem;
-    }
+    .scroll-hint::after { content: '↓'; font-size: 1rem; }
 
     @keyframes bobble {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+      50%       { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* ── DIVIDER ── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 3rem 5vw;
-      overflow: hidden;
-    }
-
-    .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--clay) 30%, var(--clay) 70%, transparent); }
-
-    .divider-text {
-      font-family: 'Space Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--clay);
-      white-space: nowrap;
-    }
-
-    /* ── STATS BAND ── */
+    /* ── STATS ── */
     .stats-band {
       background: var(--ink);
       color: var(--parchment);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       padding: 3rem 5vw;
-      gap: 1px;
       position: relative;
     }
 
@@ -219,7 +182,6 @@
       border-right: 1px solid rgba(245,239,227,.08);
       position: relative;
       z-index: 1;
-      animation: fadeUp .6s ease both;
     }
 
     .stat:last-child { border-right: none; }
@@ -249,10 +211,27 @@
       margin-top: .3rem;
     }
 
-    /* ── ANATOMY ── */
-    .section {
-      padding: 6rem 5vw;
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 3rem 5vw;
     }
+
+    .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--clay) 30%, var(--clay) 70%, transparent); }
+
+    .divider-text {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      white-space: nowrap;
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 6rem 5vw; }
 
     .section-header {
       display: flex;
@@ -278,7 +257,7 @@
 
     h2 em { color: var(--water); font-style: italic; }
 
-    /* ── GRID FEATURES ── */
+    /* ── FEATURES ── */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -289,7 +268,6 @@
       background: var(--parchment);
       border-radius: .25rem;
       overflow: hidden;
-      position: relative;
       transition: transform .4s ease, box-shadow .4s ease;
     }
 
@@ -298,9 +276,7 @@
       box-shadow: 0 24px 48px var(--shadow);
     }
 
-    .feature-card:first-child {
-      grid-row: span 2;
-    }
+    .feature-card:first-child { grid-row: span 2; }
 
     .feature-img {
       width: 100%;
@@ -311,16 +287,13 @@
     }
 
     .feature-card:first-child .feature-img {
-      aspect-ratio: 3/4;
-      height: 100%;
-      object-fit: cover;
+      aspect-ratio: unset;
+      height: 55%;
     }
 
     .feature-card:hover .feature-img { transform: scale(1.05); }
 
-    .feature-body {
-      padding: 1.5rem;
-    }
+    .feature-body { padding: 1.5rem; }
 
     .feature-tag {
       font-family: 'Space Mono', monospace;
@@ -367,17 +340,6 @@
       pointer-events: none;
     }
 
-    .pullquote-section::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background: radial-gradient(ellipse at bottom right, rgba(196,132,58,.2), transparent 60%);
-      pointer-events: none;
-    }
-
     blockquote {
       max-width: 70ch;
       margin: 0 auto;
@@ -391,7 +353,6 @@
       font-size: clamp(1.6rem, 3vw, 2.8rem);
       font-style: italic;
       line-height: 1.4;
-      font-weight: 400;
       margin-bottom: 2rem;
     }
 
@@ -411,10 +372,7 @@
       min-height: 60vh;
     }
 
-    .habitat-img-wrap {
-      position: relative;
-      overflow: hidden;
-    }
+    .habitat-img-wrap { position: relative; overflow: hidden; }
 
     .habitat-img {
       width: 100%;
@@ -428,9 +386,7 @@
 
     .habitat-overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       padding: 2rem;
       background: linear-gradient(to top, rgba(26,18,8,.8), transparent);
       color: var(--parchment);
@@ -460,11 +416,6 @@
       justify-content: center;
     }
 
-    .habitat-content h2 {
-      margin-bottom: 1.5rem;
-      color: var(--cream);
-    }
-
     .habitat-list {
       list-style: none;
       display: flex;
@@ -490,7 +441,7 @@
       flex-shrink: 0;
     }
 
-    /* ── GALLERY STRIP ── */
+    /* ── GALERIE ── */
     .gallery-strip {
       padding: 5rem 5vw;
       background: var(--ink);
@@ -516,7 +467,7 @@
       display: grid;
       grid-template-columns: 2fr 1fr 1.5fr 1fr;
       gap: .75rem;
-      height: 320px;
+      height: 300px;
     }
 
     .gallery-item {
@@ -554,210 +505,120 @@
       backdrop-filter: blur(4px);
     }
 
-    /* ── CARTE FLUORESCENCE ── */
-    .gallery-fluoro {
-      margin-top: .75rem;
-      border-radius: .2rem;
-      overflow: hidden;
-      position: relative;
-      background: #05080f;
-      min-height: 220px;
+    /* ── ENCADRÉ FLUORESCENCE ── */
+    .fluoro-encadre {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(127,255,212,.2);
+      border-radius: .25rem;
+      background: rgba(5,8,15,.6);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      cursor: pointer;
-    }
-
-    .fluoro-visual {
-      position: relative;
+      grid-template-columns: auto 1fr;
+      gap: 0;
       overflow: hidden;
+      transition: border-color .4s;
     }
 
-    .fluoro-img-day {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: opacity .9s ease;
+    .fluoro-encadre:hover { border-color: rgba(127,255,212,.45); }
+
+    .fluoro-accent-bar {
+      width: 4px;
+      background: linear-gradient(to bottom, #7fffd4, #3b82f6, #a855f7);
     }
 
-    .fluoro-img-uv {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0;
-      transition: opacity .9s ease;
-      filter: hue-rotate(160deg) saturate(3) brightness(1.4);
-    }
-
-    /* Simulation de l'effet UV par CSS quand pas d'image UV dispo */
-    .fluoro-uv-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 40% 55%,
-        rgba(80,255,200,.35) 0%,
-        rgba(50,180,255,.25) 30%,
-        rgba(120,80,255,.15) 55%,
-        transparent 75%
-      );
-      mix-blend-mode: screen;
-      opacity: 0;
-      transition: opacity .9s ease;
-      pointer-events: none;
-    }
-
-    .fluoro-dark-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(5,8,15,.7);
-      opacity: 0;
-      transition: opacity .9s ease;
-      pointer-events: none;
-    }
-
-    .gallery-fluoro.uv-on .fluoro-dark-overlay { opacity: 1; }
-    .gallery-fluoro.uv-on .fluoro-uv-overlay   { opacity: 1; }
-    .gallery-fluoro.uv-on .fluoro-img-day      { filter: saturate(0) brightness(.4); }
-
-    /* Particules lumineuses flottantes */
-    .fluoro-particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .9s ease;
-    }
-
-    .gallery-fluoro.uv-on .fluoro-particles { opacity: 1; }
-
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: #7fffd4;
-      box-shadow: 0 0 6px 2px rgba(127,255,212,.8);
-      animation: floatParticle linear infinite;
-    }
-
-    @keyframes floatParticle {
-      0%   { transform: translateY(0) translateX(0) scale(1); opacity: .8; }
-      50%  { opacity: 1; }
-      100% { transform: translateY(-60px) translateX(var(--dx, 10px)) scale(0); opacity: 0; }
-    }
-
-    .fluoro-content {
-      padding: 2.5rem 2rem;
+    .fluoro-inner {
+      padding: 2rem 2.5rem;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
-      position: relative;
-      z-index: 1;
+      gap: 2.5rem;
+      align-items: flex-start;
     }
 
-    .fluoro-tag {
+    .fluoro-icon-wrap {
+      flex-shrink: 0;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(127,255,212,.15), rgba(59,130,246,.1));
+      border: 1px solid rgba(127,255,212,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      position: relative;
+    }
+
+    .fluoro-icon-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(127,255,212,.1);
+    }
+
+    .fluoro-body { flex: 1; }
+
+    .fluoro-label {
       font-family: 'Space Mono', monospace;
       font-size: .6rem;
-      letter-spacing: .2em;
+      letter-spacing: .22em;
       text-transform: uppercase;
       color: #7fffd4;
+      margin-bottom: .6rem;
     }
 
     .fluoro-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      line-height: 1.2;
       color: var(--parchment);
+      line-height: 1.2;
+      margin-bottom: .75rem;
     }
 
-    .fluoro-title em {
-      font-style: italic;
-      color: #7fffd4;
-    }
+    .fluoro-title em { font-style: italic; color: #7fffd4; }
 
     .fluoro-text {
       font-size: 1rem;
       font-weight: 300;
-      line-height: 1.65;
-      color: rgba(245,239,227,.75);
-      max-width: 38ch;
+      line-height: 1.7;
+      color: rgba(245,239,227,.72);
+      max-width: 65ch;
     }
 
-    .fluoro-toggle {
+    .fluoro-meta {
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .fluoro-chip {
       display: inline-flex;
       align-items: center;
-      gap: .75rem;
-      background: rgba(127,255,212,.12);
-      border: 1px solid rgba(127,255,212,.3);
-      color: #7fffd4;
+      gap: .4rem;
       font-family: 'Space Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .15em;
+      font-size: .58rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      padding: .6rem 1.2rem;
+      color: rgba(127,255,212,.7);
+      border: 1px solid rgba(127,255,212,.2);
+      padding: .25rem .7rem;
       border-radius: 2rem;
-      cursor: pointer;
-      transition: background .3s, border-color .3s;
-      width: fit-content;
-      user-select: none;
     }
 
-    .fluoro-toggle:hover {
-      background: rgba(127,255,212,.22);
-      border-color: rgba(127,255,212,.6);
-    }
-
-    .fluoro-toggle-dot {
-      width: .5rem;
-      height: .5rem;
+    .fluoro-chip-dot {
+      width: .35rem;
+      height: .35rem;
       border-radius: 50%;
       background: #7fffd4;
-      box-shadow: 0 0 6px #7fffd4;
-      transition: background .3s;
+      animation: pulse 2s infinite;
     }
 
-    .gallery-fluoro.uv-on .fluoro-toggle {
-      background: rgba(127,255,212,.25);
-      border-color: #7fffd4;
-    }
-
-    .fluoro-year {
+    .fluoro-source {
       font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      color: rgba(245,239,227,.3);
-      letter-spacing: .1em;
-    }
-
-    .fluoro-mode-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      font-family: 'Space Mono', monospace;
-      font-size: .55rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.6);
-      background: rgba(5,8,15,.5);
-      padding: .25rem .6rem;
-      border-radius: 2rem;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.1);
-      transition: color .5s, border-color .5s;
-      z-index: 5;
-    }
-
-    .gallery-fluoro.uv-on .fluoro-mode-badge {
-      color: #7fffd4;
-      border-color: rgba(127,255,212,.4);
-    }
-
-    @media (max-width: 700px) {
-      .gallery-fluoro { grid-template-columns: 1fr; }
-      .fluoro-visual { height: 260px; }
+      font-size: .58rem;
+      color: rgba(245,239,227,.25);
+      letter-spacing: .08em;
     }
 
     /* ── CURIOSITÉS ── */
@@ -784,11 +645,7 @@
 
     .curiosite-item:hover { border-color: var(--water); }
 
-    .curiosite-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-      line-height: 1;
-    }
+    .curiosite-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
 
     .curiosite-body h3 {
       font-family: 'Playfair Display', serif;
@@ -853,19 +710,6 @@
       border-radius: 2rem;
     }
 
-    .status-dot {
-      width: .5rem;
-      height: .5rem;
-      background: #8ec97f;
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .5; transform: scale(1.3); }
-    }
-
     .conservation-image {
       border-radius: .25rem;
       overflow: hidden;
@@ -908,9 +752,9 @@
     }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(1.3); }
     }
 
     .reveal {
@@ -919,31 +763,32 @@
       transition: opacity .7s ease, transform .7s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 5rem 5vw 3rem; justify-content: flex-start; }
-      .hero-right { height: 50vmin; }
-      .stats-band { grid-template-columns: repeat(2, 1fr); }
-      .features-grid { grid-template-columns: 1fr; }
+      .hero                  { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left             { padding: 5rem 5vw 3rem; justify-content: flex-start; }
+      .hero-right            { height: 50vmin; }
+      .stats-band            { grid-template-columns: repeat(2, 1fr); }
+      .features-grid         { grid-template-columns: 1fr; }
       .feature-card:first-child { grid-row: auto; }
-      .habitat-section { grid-template-columns: 1fr; }
-      .gallery-row { grid-template-columns: repeat(2, 1fr); height: auto; }
-      .gallery-item { height: 200px; }
-      .curiosites-grid { grid-template-columns: 1fr; }
-      .conservation-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      footer { flex-direction: column; align-items: flex-start; }
-      .footer-info { text-align: left; }
+      .feature-card:first-child .feature-img { height: auto; aspect-ratio: 4/3; }
+      .habitat-section       { grid-template-columns: 1fr; }
+      .gallery-row           { grid-template-columns: repeat(2, 1fr); height: auto; }
+      .gallery-item          { height: 200px; }
+      .fluoro-inner          { flex-direction: column; gap: 1.2rem; }
+      .curiosites-grid       { grid-template-columns: 1fr; }
+      .conservation-inner    { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer                 { flex-direction: column; align-items: flex-start; }
+      .footer-info           { text-align: left; }
     }
 
     @media (max-width: 600px) {
-      .stats-band { grid-template-columns: 1fr 1fr; }
+      .stats-band  { grid-template-columns: 1fr 1fr; }
       .gallery-row { grid-template-columns: 1fr; }
+      .fluoro-encadre { grid-template-columns: 1fr; }
+      .fluoro-accent-bar { width: 100%; height: 4px; }
     }
   </style>
 </head>
@@ -958,7 +803,7 @@
         Dans les cours d'eau d'Australie se cache l'une des créatures les plus énigmatiques de notre planète — un mammifère qui pond des œufs, chassé par l'électricité, armé d'un venin mortel.
       </p>
       <span class="hero-badge">
-        <span class="status-dot" style="width:.4rem;height:.4rem;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;"></span>
+        <span class="status-dot"></span>
         Ornithorhynchus anatinus
       </span>
     </div>
@@ -966,10 +811,9 @@
       <img
         class="hero-img-main"
         src="images/portrait.jpg"
-        alt="Ornithorynque nageant dans un cours d'eau australien"
+        alt="Ornithorynque"
         loading="eager"
       />
-      <span class="hero-caption">© Queensland Museum</span>
     </div>
     <span class="scroll-hint">Découvrir</span>
   </section>
@@ -1010,12 +854,7 @@
     <div class="features-grid">
 
       <div class="feature-card reveal">
-        <img
-          class="feature-img"
-          src="images/habitat.jpg"
-          alt="Ornithorynque au bord de l'eau"
-          loading="lazy"
-        />
+        <img class="feature-img" src="images/nage.jpg" alt="Ornithorynque nageant" loading="lazy" />
         <div class="feature-body">
           <p class="feature-tag">Électrolocalisation</p>
           <h3 class="feature-title">Un sixième sens électrique</h3>
@@ -1026,12 +865,7 @@
       </div>
 
       <div class="feature-card reveal">
-        <img
-          class="feature-img"
-          src="images/anatomie.jpg"
-          alt="Illustration anatomique d'un ornithorynque"
-          loading="lazy"
-        />
+        <img class="feature-img" src="images/anatomie.jpg" alt="Illustration anatomique d'un ornithorynque" loading="lazy" />
         <div class="feature-body">
           <p class="feature-tag">Mammifère Ovipare</p>
           <h3 class="feature-title">Il pond des œufs</h3>
@@ -1042,12 +876,7 @@
       </div>
 
       <div class="feature-card reveal">
-        <img
-          class="feature-img"
-          src="images/alimentation.jpg"
-          alt="Ornithorynque en train de se nourrir"
-          loading="lazy"
-        />
+        <img class="feature-img" src="images/alimentation.jpg" alt="Ornithorynque en train de se nourrir" loading="lazy" />
         <div class="feature-body">
           <p class="feature-tag">Venin</p>
           <h3 class="feature-title">Armé et dangereux</h3>
@@ -1071,12 +900,7 @@
   <!-- HABITAT -->
   <div class="habitat-section">
     <div class="habitat-img-wrap">
-      <img
-        class="habitat-img"
-        src="images/sketch2.jpg"
-        alt="Cours d'eau australien habitat de l'ornithorynque"
-        loading="lazy"
-      />
+      <img class="habitat-img" src="images/nage.jpg" alt="Ornithorynque dans l'eau" loading="lazy" />
       <div class="habitat-overlay">
         <p class="habitat-overlay-title">Zone de répartition</p>
         <p class="habitat-overlay-text">Est de l'Australie et Tasmanie</p>
@@ -1101,62 +925,48 @@
   <section class="gallery-strip">
     <div class="gallery-strip-header">
       <h2>Galerie</h2>
-      <span class="gallery-strip-num">05 clichés</span>
+      <span class="gallery-strip-num">04 clichés</span>
     </div>
     <div class="gallery-row">
       <div class="gallery-item">
-        <img src="images/nage.jpg" alt="Ornithorynque sortant de l'eau" loading="lazy" />
-        <span class="gallery-item-label">Sortie de l'eau</span>
+        <img src="images/nage.jpg" alt="Ornithorynque nageant" loading="lazy" />
+        <span class="gallery-item-label">En nage</span>
       </div>
       <div class="gallery-item">
         <img src="images/portrait.jpg" alt="Portrait d'ornithorynque" loading="lazy" />
         <span class="gallery-item-label">Portrait</span>
       </div>
       <div class="gallery-item">
-        <img src="images/habitat.jpg" alt="Ornithorynque dans son habitat naturel" loading="lazy" />
-        <span class="gallery-item-label">Habitat naturel</span>
-      </div>
-      <div class="gallery-item">
         <img src="images/alimentation.jpg" alt="Ornithorynque en alimentation" loading="lazy" />
         <span class="gallery-item-label">Alimentation</span>
       </div>
+      <div class="gallery-item">
+        <img src="images/anatomie.jpg" alt="Anatomie de l'ornithorynque" loading="lazy" />
+        <span class="gallery-item-label">Anatomie</span>
+      </div>
     </div>
 
-    <!-- CARTE FLUORESCENCE -->
-    <div class="gallery-fluoro" id="fluoroCard" onclick="toggleUV()">
-
-      <!-- Photo de l'animal -->
-      <div class="fluoro-visual">
-        <img
-          class="fluoro-img-day"
-          id="fluoroImgDay"
-          src="images/portrait.jpg"
-          alt="Ornithorynque sous lumière normale"
-          loading="lazy"
-        />
-        <!-- Overlay qui assombrit l'image et simule l'UV -->
-        <div class="fluoro-dark-overlay"></div>
-        <div class="fluoro-uv-overlay"></div>
-        <!-- Particules lumineuses générées par JS -->
-        <div class="fluoro-particles" id="fluoroParticles"></div>
-        <!-- Badge de mode -->
-        <span class="fluoro-mode-badge" id="fluoroModeBadge">Lumière normale</span>
-      </div>
-
-      <!-- Texte explicatif -->
-      <div class="fluoro-content">
-        <p class="fluoro-tag">Découverte · 2020</p>
-        <h3 class="fluoro-title">Une fourrure <em>fluorescente</em></h3>
-        <p class="fluoro-text">
-          Sa fourrure brune banale se transforme en un halo bleu-vert sous lumière ultraviolette. Découverte fortuitement au Field Museum de Chicago, cette biofluorescence reste l'une des propriétés les plus mystérieuses de l'animal.
-        </p>
-        <div class="fluoro-toggle" id="fluoroToggle">
-          <span class="fluoro-toggle-dot"></span>
-          <span id="fluoroToggleLabel">Activer la lumière UV</span>
+    <!-- ENCADRÉ FLUORESCENCE -->
+    <div class="fluoro-encadre reveal">
+      <div class="fluoro-accent-bar"></div>
+      <div class="fluoro-inner">
+        <div class="fluoro-icon-wrap">🔦</div>
+        <div class="fluoro-body">
+          <p class="fluoro-label">Découverte · 2020</p>
+          <h3 class="fluoro-title">Une fourrure <em>fluorescente</em></h3>
+          <p class="fluoro-text">
+            En 2020, des chercheurs du Field Museum de Chicago ont découvert par hasard que la fourrure de l'ornithorynque émet une lueur bleu-vert sous lumière ultraviolette. Ce phénomène, appelé biofluorescence, avait été observé chez des poissons, des reptiles et quelques oiseaux — mais jamais encore chez un mammifère ovipare. La fonction de cette propriété reste à ce jour totalement inexpliquée : camouflage nocturne, communication entre individus, simple vestige évolutif ? Les scientifiques ne tranchent pas.
+          </p>
+          <div class="fluoro-meta">
+            <span class="fluoro-chip">
+              <span class="fluoro-chip-dot"></span>
+              Biofluorescence
+            </span>
+            <span class="fluoro-chip">Premier monotrème connu</span>
+            <span class="fluoro-source">Anich et al., <em>Mammalia</em>, 2020</span>
+          </div>
         </div>
-        <p class="fluoro-year">Anich et al., <em>Mammalia</em>, 2020</p>
       </div>
-
     </div>
   </section>
 
@@ -1184,8 +994,8 @@
       <div class="curiosite-item reveal">
         <span class="curiosite-icon">👁️</span>
         <div class="curiosite-body">
-          <h3>Fluorescent sous UV</h3>
-          <p>Découverte en 2020 : sa fourrure émet une fluorescence bleu-vert sous lumière ultraviolette. La fonction de cette propriété reste un mystère scientifique total.</p>
+          <h3>Vision UV</h3>
+          <p>L'ornithorynque possède une vision sensible aux ultraviolets, ce qui suggère que la biofluorescence de sa fourrure pourrait jouer un rôle dans la communication entre individus lors des chasses nocturnes.</p>
         </div>
       </div>
       <div class="curiosite-item reveal">
@@ -1213,16 +1023,12 @@
           Des programmes de surveillance par ADN environnemental (eDNA) permettent désormais de détecter sa présence sans le perturber, ouvrant la voie à une cartographie précise de ses habitats restants.
         </p>
         <span class="status-badge">
-          <span class="status-dot"></span>
+          <span class="status-dot" style="background:#8ec97f;"></span>
           Quasi menacé — UICN 2023
         </span>
       </div>
       <div class="conservation-image reveal">
-        <img
-          src="images/nage.jpg"
-          alt="Ornithorynque dans son habitat naturel"
-          loading="lazy"
-        />
+        <img src="images/portrait.jpg" alt="Ornithorynque dans la nature" loading="lazy" />
       </div>
     </div>
   </section>
@@ -1231,13 +1037,12 @@
   <footer>
     <div class="footer-brand">Ornithorynque</div>
     <div class="footer-info">
-      Sources : UICN · Australian Museum · Naturalis Miscellany<br />
-      Images : Wikimedia Commons — Domaine public
+      Sources : UICN · Australian Museum · Mammalia 2020<br />
+      Ornithorhynchus anatinus
     </div>
   </footer>
 
   <script>
-    // Intersection Observer pour les animations d'apparition
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -1250,54 +1055,11 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Parallax léger sur le hero
     const heroImg = document.querySelector('.hero-img-main');
     if (heroImg) {
       window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        heroImg.style.transform = `translateY(${y * 0.2}px)`;
+        heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
       }, { passive: true });
-    }
-
-    // ── TOGGLE UV ──
-    let uvActive = false;
-
-    function buildParticles() {
-      const container = document.getElementById('fluoroParticles');
-      if (!container || container.children.length > 0) return;
-      for (let i = 0; i < 22; i++) {
-        const p = document.createElement('span');
-        p.className = 'particle';
-        p.style.cssText = `
-          left: ${10 + Math.random() * 80}%;
-          top: ${20 + Math.random() * 65}%;
-          --dx: ${(Math.random() - 0.5) * 30}px;
-          animation-duration: ${1.8 + Math.random() * 2.5}s;
-          animation-delay: ${Math.random() * 2}s;
-          width: ${2 + Math.random() * 3}px;
-          height: ${2 + Math.random() * 3}px;
-          opacity: ${0.5 + Math.random() * 0.5};
-        `;
-        container.appendChild(p);
-      }
-    }
-
-    function toggleUV() {
-      uvActive = !uvActive;
-      const card   = document.getElementById('fluoroCard');
-      const badge  = document.getElementById('fluoroModeBadge');
-      const label  = document.getElementById('fluoroToggleLabel');
-
-      if (uvActive) {
-        buildParticles();
-        card.classList.add('uv-on');
-        badge.textContent = '⚡ Lumière UV';
-        label.textContent = 'Désactiver la lumière UV';
-      } else {
-        card.classList.remove('uv-on');
-        badge.textContent = 'Lumière normale';
-        label.textContent = 'Activer la lumière UV';
-      }
     }
   </script>
 </body>
