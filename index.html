@@ -1,1 +1,399 @@
-Coucou
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Monde Animal — Accueil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0f0d;
+            color: #e8e6e1;
+            min-height: 100vh;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(10,15,13,0.3) 0%, rgba(10,15,13,0.85) 100%),
+                url('https://images.pexels.com/photos/5732546/pexels-photo-5732546.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 2rem;
+        }
+
+        .hero-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #c8e6c9, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #b0b8b3;
+            font-weight: 300;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .scroll-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #81c784;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .scroll-hint:hover {
+            transform: translateY(4px);
+        }
+
+        .scroll-arrow {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        /* ===== SECTION PAGES ===== */
+        .section-pages {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: #7a8a7e;
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #141c18;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(10,15,13,0.75);
+            backdrop-filter: blur(8px);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #81c784;
+            border: 1px solid rgba(129,199,132,0.2);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body .latin {
+            font-style: italic;
+            color: #81c784;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .card-body p {
+            color: #9ca89e;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #81c784;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
+        }
+
+        .card:hover .card-link {
+            gap: 0.8rem;
+        }
+
+        .card-link-arrow {
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-link-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ===== FICHIERS ANNEXES ===== */
+        .annexes {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .annexes h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .file-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .file-list li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.25rem;
+            background: #141c18;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            color: #b0b8b3;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .file-list li a:hover {
+            background: #1c2a22;
+            border-color: rgba(129,199,132,0.3);
+            color: #e8e6e1;
+        }
+
+        .file-icon {
+            font-size: 1.2rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #5a6a5e;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: #81c784;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .hero {
+                height: 55vh;
+                min-height: 380px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-emoji">🌍</span>
+            <h1>Le Monde Animal</h1>
+            <p>Découvrez des espèces fascinantes à travers nos fiches détaillées. Cliquez sur un animal pour explorer sa page dédiée.</p>
+            <a href="#animaux" class="scroll-hint">
+                Explorer nos fiches
+                <span class="scroll-arrow">↓</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===== SECTION ANIMAUX ===== -->
+    <section class="section-pages" id="animaux">
+        <h2 class="section-title">Nos fiches animales</h2>
+        <p class="section-subtitle">Chaque fiche est une page HTML dédiée — cliquez pour y accéder.</p>
+
+        <div class="cards-grid">
+
+            <!-- CARTE 1 : Abeille -->
+            <article class="card">
+                <a href="abeille.html">
+                    <div class="card-img-wrapper">
+                        <img class="card-img"
+                             src="https://images.pexels.com/photos/33188165/pexels-photo-33188165.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                             alt="Abeille butinant une fleur de lavande">
+                        <span class="card-badge">🐝 Insecte</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>L'Abeille</h2>
+                        <span class="latin">Apis mellifera</span>
+                        <p>75 % de nos cultures en dépendent. Découvrez ces infatigables pollinisatrices, leur organisation fascinante et leur rôle vital pour notre écosystème.</p>
+                        <span class="card-link">
+                            Lire la fiche
+                            <span class="card-link-arrow">→</span>
+                        </span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- CARTE 2 : Ornithorynque -->
+            <article class="card">
+                <a href="ornithorynque.html">
+                    <div class="card-img-wrapper">
+                        <img class="card-img"
+                             src="https://images.pexels.com/photos/33755422/pexels-photo-33755422.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                             alt="Monotrème australien dans son habitat naturel">
+                        <span class="card-badge">🦆 Mammifère ovipare</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>L'Ornithorynque</h2>
+                        <span class="latin">Ornithorhynchus anatinus</span>
+                        <p>Mi-castor, mi-canard, venimeux et fluorescent sous UV — le mammifère le plus énigmatique de la planète, caché dans les rivières d'Australie.</p>
+                        <span class="card-link">
+                            Lire la fiche
+                            <span class="card-link-arrow">→</span>
+                        </span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- CARTE 3 : Léopard -->
+            <article class="card">
+                <a href="leopard.txt">
+                    <div class="card-img-wrapper">
+                        <img class="card-img"
+                             src="https://images.pexels.com/photos/1642068/pexels-photo-1642068.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                             alt="Portrait d'un léopard avec ses yeux perçants">
+                        <span class="card-badge">🐆 Félin</span>
+                    </div>
+                    <div class="card-body">
+                        <h2>Le Léopard</h2>
+                        <span class="latin">Panthera pardus</span>
+                        <p>Prédateur solitaire et discret, le léopard est le félin le plus adaptable de la planète. Consultez notre document sur cet animal majestueux.</p>
+                        <span class="card-link">
+                            Lire le document (.txt)
+                            <span class="card-link-arrow">→</span>
+                        </span>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>Projet réalisé par ARACIL Elise, LEMMET-VIDAL Line et MAURON Elsa — Hébergé sur GitHub</p>
+    </footer>
+
+</body>
+</html>
