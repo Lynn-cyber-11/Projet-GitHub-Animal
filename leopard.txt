@@ -3,367 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Léopard</title>
+    <meta name="description" content="Découvrez le léopard (Panthera pardus), un félin majestueux. Apprenez tout sur son habitat, son comportement et sa conservation.">
+    <meta name="author" content="Passionné de la nature">
+    <title>Le Léopard — Roi Discret de la Savane</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Georgia', serif;
             background-color: #3e2c23;
+            color: #f5efe6;
+            font-family: 'Open Sans', sans-serif;
         }
-        
+
         h1, h2, h3 {
-            font-family: 'Georgia', serif;
+            font-family: 'Playfair Display', serif;
         }
-        
-        /* Navigation simple */
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(45,31,24,0.9));
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c4956a, #a0784e);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #c4956a;
+            color: #2d1f18;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible { opacity: 1; }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .section-card {
+            background-color: #4e3828;
+            border: 1px solid #6b4f3a;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background-color: #c4956a;
+            margin: 12px 0 24px 0;
+            border-radius: 2px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #c4956a;
+        }
+
+        .section-alt {
+            background-color: #352418;
+        }
+
         .nav-link {
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover {
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
             color: #f5efe6;
         }
-        
-        /* Image de fond du hero */
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                              url('https://www.google.com/imgres?q=le%20leopard&imgurl=https%3A%2F%2Fwww.publicdomainpictures.net%2Fpictures%2F40000%2Fnahled%2Fleopard-background.jpg&imgrefurl=https%3A%2F%2Fwww.publicdomainpictures.net%2Ffr%2Fview-image.php%3Fimage%3D34510%26picture%3Dleopard-de-fond&docid=ahwElot5MPfUBM&tbnid=8UYcCE4d8pxQzM&vet=12ahUKEwjtrt6g1uWUAxVbNvsDHTu1BNQQnPAOegQIQxAB..i&w=615&h=407&hcb=2&ved=2ahUKEwjtrt6g1uWUAxVbNvsDHTu1BNQQnPAOegQIQxAB');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+        .nav-link:hover {
+            background-color: #5a3e2e;
         }
-        
-        /* Encadrés simples */
-        .encadre {
-            background-color: #4e3828;
-            border: 2px solid #6b4f3a;
-            border-radius: 8px;
-            padding: 24px;
-            margin: 20px 0;
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .encadre-simple {
-            background-color: #9C7E5E;
-            border-left: 4px solid #6B5538;
-            padding: 20px;
-            margin: 15px 0;
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
-        /* Images */
-        .img-ronde {
-            border-radius: 12px;
-            border: 3px solid #6B5538;
-        }
-        
-        /* Bouton simple */
-        .btn-simple {
-            background-color: #6B5538;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 6px;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
-        
-        .btn-simple:hover {
-            background-color: #4A3A24;
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    
-    <!-- Navigation -->
-    <nav class="bg-[#6B5538] p-4 sticky top-0 z-50 shadow-lg">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="fas fa-paw text-[#D4A574] text-xl"></i>
-                <span class="text-white text-lg font-bold">Le Léopard</span>
+    <!-- Barre de progression -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="fixed top-0 left-0 right-0 z-50" style="background-color: #2d1f18e6; backdrop-filter: blur(8px); border-bottom: 1px solid #4e3828;">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#accueil" class="flex items-center space-x-2">
+                <i class="fas fa-paw" style="color: #c4956a;"></i>
+                <span class="text-xl font-bold" style="color: #c4956a;">Le Léopard</span>
+            </a>
+            <div class="hidden md:flex space-x-1">
+                <a href="#accueil" class="nav-link text-sm">Accueil</a>
+                <a href="#description" class="nav-link text-sm">Description</a>
+                <a href="#habitat" class="nav-link text-sm">Habitat</a>
+                <a href="#alimentation" class="nav-link text-sm">Alimentation</a>
+                <a href="#reproduction" class="nav-link text-sm">Reproduction</a>
+                <a href="#conservation" class="nav-link text-sm">Conservation</a>
             </div>
-            <div class="hidden md:flex gap-6">
-                <a href="#accueil" class="nav-link text-white">Accueil</a>
-                <a href="#presentation" class="nav-link text-white">Présentation</a>
-                <a href="#caracteristiques" class="nav-link text-white">Caractéristiques</a>
-                <a href="#habitat" class="nav-link text-white">Habitat</a>
-                <a href="#alimentation" class="nav-link text-white">Alimentation</a>
-                <a href="#galerie" class="nav-link text-white">Galerie</a>
-                <a href="#conservation" class="nav-link text-white">Conservation</a>
-            </div>
-            <button class="md:hidden text-white text-xl" onclick="document.getElementById('menuMobile').classList.toggle('hidden')">
+            <button id="menuBtn" class="md:hidden text-2xl" style="color: #c4956a;">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="menuMobile" class="hidden md:hidden mt-4 space-y-2">
-            <a href="#accueil" class="block text-white py-2">Accueil</a>
-            <a href="#presentation" class="block text-white py-2">Présentation</a>
-            <a href="#caracteristiques" class="block text-white py-2">Caractéristiques</a>
-            <a href="#habitat" class="block text-white py-2">Habitat</a>
-            <a href="#alimentation" class="block text-white py-2">Alimentation</a>
-            <a href="#galerie" class="block text-white py-2">Galerie</a>
-            <a href="#conservation" class="block text-white py-2">Conservation</a>
+        <!-- Menu mobile -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2" style="background-color: #2d1f18;">
+            <a href="#accueil" class="nav-link block text-sm">Accueil</a>
+            <a href="#description" class="nav-link block text-sm">Description</a>
+            <a href="#habitat" class="nav-link block text-sm">Habitat</a>
+            <a href="#alimentation" class="nav-link block text-sm">Alimentation</a>
+            <a href="#reproduction" class="nav-link block text-sm">Reproduction</a>
+            <a href="#conservation" class="nav-link block text-sm">Conservation</a>
         </div>
     </nav>
 
-    <!-- Section Accueil avec image de fond -->
-    <section id="accueil" class="hero-bg flex items-center justify-center">
-        <div class="text-center text-white px-4">
-            <i class="fas fa-paw text-[#D4A574] text-6xl mb-6"></i>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">Le Léopard</h1>
-            <p class="text-xl md:text-2xl mb-8">Le roi discret de la savane</p>
-            <a href="#presentation" class="btn-simple">Découvrir</a>
+    <!-- ===== SECTION ACCUEIL (HERO) ===== -->
+    <section id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://www.publicdomainpictures.net/pictures/40000/nahled/leopard-background.jpg"
+             alt="Léopard dans la nature"
+             class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="mb-6">
+                <i class="fas fa-paw text-6xl" style="color: #c4956a; animation: pulse 2s infinite;"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4" style="color: #c4956a;">Le Léopard</h1>
+            <p class="text-xl md:text-2xl mb-8" style="color: #f5efe6;">
+                Roi discret de la savane, maître de la furtivité et de l'élégance
+            </p>
+            <a href="#description" class="inline-block py-3 px-8 rounded-full text-lg font-semibold" style="background-color: #c4956a; color: #2d1f18;">
+                <i class="fas fa-arrow-down mr-2"></i>Découvrir
+            </a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl" style="color: #c4956a;"></i>
         </div>
     </section>
 
-    <!-- Section Présentation -->
-    <section id="presentation" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Présentation</h2>
-        
-        <div class="encadre">
-            <p class="text-white text-lg leading-relaxed mb-4">
-                Le léopard (<em>Panthera pardus</em>) est l'un des cinq grands félins du genre <em>Panthera</em>. 
-                On le reconnaît facilement grâce à sa robe tachetée caractéristique qui lui permet 
-                de se camoufler dans la nature.
-            </p>
-            <p class="text-white text-lg leading-relaxed">
-                C'est un animal à la fois puissant, agile et très discret. On le trouve dans plusieurs 
-                régions d'Afrique et d'Asie, dans des environnements très différents les uns des autres.
-            </p>
-        </div>
-
-        <div class="encadre-simple">
-            <h3 class="text-2xl font-bold text-white mb-3">Quelques chiffres</h3>
-            <p class="text-white">
-                Poids : 30 à 90 kg | Longueur : jusqu'à 1,90 m | Vitesse : 60 km/h | 
-                Espérance de vie : 12 à 17 ans
-            </p>
-        </div>
-    </section>
-
-    <!-- Section Caractéristiques -->
-    <section id="caracteristiques" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Caractéristiques</h2>
-        
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-paint-brush text-[#D4A574] mr-2"></i>La robe
-            </h3>
-            <p class="text-white leading-relaxed">
-                Le léopard a une belle robe dorée parsemée de tâches noires appelées rosettes. 
-                Chaque léopard a un motif unique, un peu comme les empreintes digitales chez l'humain. 
-                Cette robe l'aide à se cacher dans la végétation.
-            </p>
-        </div>
-
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-running text-[#D4A574] mr-2"></i>L'agilité
-            </h3>
-            <p class="text-white leading-relaxed">
-                C'est un grimpeur hors pair ! Le léopard peut monter aux arbres avec une facilité 
-                impressionnante et y hisser des proies parfois plus lourdes que lui. Il est aussi 
-                capable de sauter jusqu'à 6 mètres de long.
-            </p>
-        </div>
-
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-eye text-[#D4A574] mr-2"></i>La vision
-            </h3>
-            <p class="text-white leading-relaxed">
-                Le léopard voit très bien dans l'obscurité, ce qui en fait un chasseur nocturne efficace. 
-                Ses yeux brillent dans le noir grâce à une couche spéciale située derrière la rétine.
-            </p>
-        </div>
-    </section>
-
-    <!-- Section Habitat -->
-    <section id="habitat" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Habitat</h2>
-        
-        <div class="encadre">
-            <p class="text-white text-lg leading-relaxed mb-6">
-                Le léopard est un animal très adaptable. On peut le trouver dans de nombreux 
-                environnements différents à travers l'Afrique et l'Asie.
-            </p>
-            
-            <div class="space-y-4">
-                <div class="encadre-simple">
-                    <h4 class="text-xl font-bold text-white mb-2">
-                        <i class="fas fa-tree text-[#D4A574] mr-2"></i>Les forêts
-                    </h4>
-                    <p class="text-white">
-                        Les forêts denses d'Afrique centrale et d'Asie du Sud-Est offrent un terrain 
-                        idéal pour ce félin discret.
-                    </p>
+    <!-- ===== STATS BAR ===== -->
+    <section class="py-12" style="background-color: #352418;">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="stat-number">90</div>
+                    <p style="color: #bfa98e;">kg maximum</p>
                 </div>
-                
-                <div class="encadre-simple">
-                    <h4 class="text-xl font-bold text-white mb-2">
-                        <i class="fas fa-sun text-[#D4A574] mr-2"></i>Les savanes
-                    </h4>
-                    <p class="text-white">
-                        Les grandes plaines d'Afrique de l'Est abritent de nombreuses populations 
-                        de léopards.
-                    </p>
+                <div class="text-center">
+                    <div class="stat-number">60</div>
+                    <p style="color: #bfa98e;">km/h en pointe</p>
                 </div>
-                
-                <div class="encadre-simple">
-                    <h4 class="text-xl font-bold text-white mb-2">
-                        <i class="fas fa-mountain text-[#D4A574] mr-2"></i>Les montagnes
-                    </h4>
-                    <p class="text-white">
-                        Certaines populations vivent même en altitude, comme le léopard de l'Amour 
-                        en Russie.
-                    </p>
+                <div class="text-center">
+                    <div class="stat-number">1.9</div>
+                    <p style="color: #bfa98e;">mètre de long</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">12</div>
+                    <p style="color: #bfa98e;">ans d'espérance</p>
                 </div>
             </div>
         </div>
-
-        <div class="text-center mt-8">
-            <img src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?w=600&h=400&fit=crop" 
-                 alt="Habitat naturel du léopard" 
-                 class="img-ronde inline-block max-w-full">
-        </div>
     </section>
 
-    <!-- Section Alimentation -->
-    <section id="alimentation" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Alimentation</h2>
-        
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">Que mange-t-il ?</h3>
-            <p class="text-white leading-relaxed mb-4">
-                Le léopard est un carnivore, ce qui veut dire qu'il mange uniquement de la viande. 
-                Il chasse principalement des animaux de taille moyenne comme les gazelles, les cerfs, 
-                les sangliers, mais aussi des singes, des oiseaux ou des reptiles.
-            </p>
-        </div>
+    <!-- ===== SECTION DESCRIPTION ===== -->
+    <section id="description" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold" style="color: #c4956a;">Description</h2>
+            <div class="divider"></div>
 
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">Comment chasse-t-il ?</h3>
-            <p class="text-white leading-relaxed">
-                Le léopard chasse seul, généralement la nuit ou à l'aube. Il s'approche discrètement 
-                de sa proie en se cachant dans les hautes herbes, puis bondit rapidement pour l'attraper. 
-                Une fois sa proie capturée, il aime la hisser dans un arbre pour la manger tranquillement, 
-                à l'abri des autres prédateurs comme les hyènes.
-            </p>
-        </div>
-    </section>
-
-    <!-- Section Galerie -->
-    <section id="galerie" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Galerie</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1551091642-7b69f75a8a79?w=400&h=300&fit=crop" 
-                     alt="Léopard au repos" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard au repos</p>
-            </div>
-            
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1534177616072-27dd3d846e4a?w=400&h=300&fit=crop" 
-                     alt="Léopard en action" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard en mouvement</p>
-            </div>
-            
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1581850518616-bcb8077a2536?w=400&h=300&fit=crop" 
-                     alt="Léopard dans un arbre" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard dans un arbre</p>
-            </div>
-            
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1517056638303-9c7c6b5d4846?w=400&h=300&fit=crop" 
-                     alt="Léopard de profil" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard de profil</p>
-            </div>
-            
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1550953683-96c23458e3d3?w=400&h=300&fit=crop" 
-                     alt="Léopard observant" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard en observation</p>
-            </div>
-            
-            <div class="encadre text-center">
-                <img src="https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=400&h=300&fit=crop" 
-                     alt="Léopard majestueux" 
-                     class="img-ronde w-full h-48 object-cover">
-                <p class="text-white mt-3">Léopard majestueux</p>
+            <div class="grid md:grid-cols-2 gap-10 items-center mt-6">
+                <div class="space-y-6">
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-3" style="color: #c4956a;"><i class="fas fa-paw mr-2"></i>Nom scientifique</h3>
+                        <p class="leading-relaxed">
+                            Le Léopard ou la Panthère (<em>Panthera pardus</em>) est une espèce de félins de la sous-famille des panthérinés. 
+                            Ce félin présente un pelage fauve tacheté de rosettes. Une forme mélanique (la Panthère noire) existe également.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-3" style="color: #c4956a;"><i class="fas fa-weight mr-2"></i>Taille et poids</h3>
+                        <p class="leading-relaxed">
+                            Le léopard a un corps long et musclé avec des pattes larges. Les muscles pectoraux sont développés, 
+                            ce qui lui permet de grimper aux arbres. La queue est longue, recourbée vers le haut lorsqu'il marche 
+                            et sert de balancier lorsqu'il se déplace dans les arbres. Le léopard pèse en moyenne 75 kg pour le mâle 
+                            et 64 kg pour la femelle. Les mâles les plus gros peuvent atteindre 90 à 100 kg.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-3" style="color: #c4956a;"><i class="fas fa-palette mr-2"></i>Le pelage</h3>
+                        <p class="leading-relaxed">
+                            Le pelage du léopard est marqué de taches sur fond jaune pâle à marron chamois. La gorge, la poitrine, 
+                            le ventre, la face interne des pattes et de la queue sont blancs. Sur les flancs, le dos et la partie 
+                            supérieure des pattes, les taches forment des rosettes dont le cœur est brun. La disposition et la forme 
+                            des taches sont très variables d'un individu à l'autre.
+                        </p>
+                    </div>
+                </div>
+                <div class="animate-on-scroll">
+                    <img src="https://www.publicdomainpictures.net/pictures/20000/nahled/leopard-head.jpg"
+                         alt="Tête de léopard"
+                         class="rounded-xl shadow-2xl w-full card-hover">
+                    <p class="text-sm mt-3 text-center" style="color: #bfa98e;">Portrait d'un léopard — son regard perçant est caractéristique</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Conservation -->
-    <section id="conservation" class="max-w-5xl mx-auto px-4 py-16">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">Conservation</h2>
-        
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-exclamation-triangle text-[#D4A574] mr-2"></i>Une espèce vulnérable
-            </h3>
-            <p class="text-white leading-relaxed">
-                Malheureusement, le léopard est une espèce classée "Vulnérable" par l'Union Internationale 
-                pour la Conservation de la Nature (UICN). Il reste environ 12 000 à 14 000 léopards adultes 
-                dans la nature, et leur nombre continue de diminuer.
-            </p>
-        </div>
+    <!-- ===== SECTION HABITAT ===== -->
+    <section id="habitat" class="py-20 px-4 section-alt">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold" style="color: #c4956a;">Habitat et répartition</h2>
+            <div class="divider"></div>
 
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-skull-crossbones text-[#D4A574] mr-2"></i>Les principales menaces
-            </h3>
-            <ul class="text-white space-y-2 list-disc list-inside">
-                <li>La destruction de son habitat naturel</li>
-                <li>Le braconnage pour sa fourrure et ses os</li>
-                <li>Les conflits avec les éleveurs de bétail</li>
-                <li>La diminution de ses proies naturelles</li>
-            </ul>
-        </div>
-
-        <div class="encadre">
-            <h3 class="text-2xl font-bold text-white mb-3">
-                <i class="fas fa-shield-alt text-[#D4A574] mr-2"></i>Comment le protéger ?
-            </h3>
-            <p class="text-white leading-relaxed">
-                De nombreuses associations travaillent à protéger le léopard en créant des réserves naturelles, 
-                en luttant contre le braconnage et en sensibilisant les populations locales. 
-                Chacun peut aussi aider en soutenant ces organisations ou en partageant des informations 
-                sur cet animal magnifique.
-            </p>
-        </div>
-
-        <div class="text-center mt-8">
-            <a href="#accueil" class="btn-simple">Retour en haut</a>
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div class="space-y-4">
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-globe-africa mr-2"></i>Répartition géographique</h3>
+                        <p class="leading-relaxed">
+                            Le léopard est le félin sauvage à l'aire de répartition la plus vaste. À l'origine, il se trouvait 
+                            dans toute l'Afrique. Il est encore commun en Afrique subsaharienne, bien qu'il se raréfie en Afrique 
+                            de l'Ouest. En Asie, il se distribue du Moyen-Orient à la Chine.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-tree mr-2"></i>Types d'habitats</h3>
+                        <p class="leading-relaxed">
+                            Le léopard est polyvalent en termes d'habitat. Hormis dans les déserts ouverts et les mangroves, 
+                            le félin s'adapte aux forêts sempervirentes, aux savanes, aux bois, aux collines rocheuses, 
+                            aux marécages, aux bords de mer comme à la montagne. Une carcasse de léopard a été trouvée à 
+                            5 700 mètres d'altitude sur le Kilimandjaro.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-map-marked-alt mr-2"></i>Territoire</h3>
+                        <p class="leading-relaxed">
+                            La taille du territoire varie selon l'habitat. Dans la savane, il mesure de 30 à 78 km² pour les 
+                            mâles et de 16 à 38 km² pour les femelles. Dans les régions montagneuses, le territoire peut s'étendre 
+                            jusqu'à 400 km². Le marquage est réalisé en griffant des arbres ou en aspergeant les buissons d'urine.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center animate-on-scroll">
+                    <div class="section-card p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #c4956a;">Sous-espèces de léopards</h3>
+                        <ul class="space-y-3 text-lg">
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard d'Afrique — <em>Panthera pardus pardus</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard d'Indochine — <em>P. p. delacouri</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard de Perse — <em>P. p. saxicolor</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard indien — <em>P. p. fusca</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard du Sri Lanka — <em>P. p. kotiya</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard de Java — <em>P. p. melas</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard de Chine du Nord — <em>P. p. japonensis</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard d'Arabie — <em>P. p. nimr</em></li>
+                            <li><i class="fas fa-caret-right mr-3" style="color: #c4956a;"></i>Léopard de l'Amour — <em>P. p. orientalis</em></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#4A3A24] text-white text-center p-6 mt-12">
-        <p class="mb-2">
-            <i class="fas fa-paw text-[#D4A574] mr-2"></i>
-            <strong>Le Léopard</strong> - Page créée avec passion pour la nature
-        </p>
-        <p class="text-sm opacity-80">© 2026 - Tous droits réservés</p>
+    <!-- ===== SECTION ALIMENTATION ===== -->
+    <section id="alimentation" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold" style="color: #c4956a;">Alimentation et chasse</h2>
+            <div class="divider"></div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div class="space-y-4">
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-drumstick-bite mr-2"></i>Régime alimentaire</h3>
+                        <p class="leading-relaxed">
+                            Le léopard est un prédateur généralement crépusculaire qui se repose à l'ombre en journée et chasse 
+                            la nuit. Un adulte mange de 1,5 à 2,5 kg de viande par jour. Opportuniste, il s'attaque à tout animal 
+                            de taille petite à moyenne qu'il peut attraper : singes, rongeurs, damans, poissons, ainsi qu'aux charognes.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-crosshairs mr-2"></i>Technique de chasse</h3>
+                        <p class="leading-relaxed">
+                            La chasse est menée à la vue et à l'ouïe. Le léopard est un prédateur furtif qui s'approche au plus 
+                            près de sa proie en rampant à couvert avant de lui sauter dessus et de la tuer d'une morsure à la nuque 
+                            ou par strangulation. Il peut également surprendre sa proie en lui sautant dessus du haut d'un arbre. 
+                            Lors d'un sprint, sa vitesse atteint 60 km/h.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-tree mr-2"></i>Stockage des proies</h3>
+                        <p class="leading-relaxed">
+                            Excellent grimpeur, le léopard a la particularité de hisser sa prise dans un arbre, à l'abri des 
+                            autres prédateurs. Il peut soulever ainsi des proies beaucoup plus lourdes que lui comme la carcasse 
+                            d'un girafon, dont la masse peut atteindre 150 kg, à une hauteur de 6 mètres.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4 animate-on-scroll">
+                    <div class="section-card">
+                        <h3 class="text-xl font-bold mb-3" style="color: #c4956a;">Proies de prédilection</h3>
+                        <p class="mb-3 leading-relaxed">
+                            Ses proies de prédilection en Afrique sont la Gazelle de Thomson, la Gazelle de Grant, l'impala, 
+                            le Cobe des roseaux, les jeunes gnous et topis. En Inde et au Népal, la proie principale est le chital, 
+                            et le muntjac dans la péninsule indonésienne. Le poids des proies varie de 5 à 70 kg en moyenne.
+                        </p>
+                        <p class="leading-relaxed">
+                            Pour les singes, le léopard a développé une technique de chasse particulière : il feint de grimper 
+                            dans l'arbre, attend que le singe descende au sol et l'attrape.
+                        </p>
+                    </div>
+                    <div class="section-card" style="border-left: 4px solid #c4956a;">
+                        <p class="italic leading-relaxed">
+                            <i class="fas fa-quote-left mr-2" style="color: #c4956a;"></i>
+                            Le léopard peut sauter sans élan sur six mètres de long et trois mètres de haut.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION REPRODUCTION ===== -->
+    <section id="reproduction" class="py-20 px-4 section-alt">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold" style="color: #c4956a;">Reproduction</h2>
+            <div class="divider"></div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div class="space-y-4">
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-heart mr-2"></i>Accouplement</h3>
+                        <p class="leading-relaxed">
+                            Le léopard est un animal exclusivement solitaire sauf durant les périodes d'accouplement. La saison 
+                            de reproduction se situe au début du printemps pour les régions subtropicales et toute l'année pour 
+                            les milieux tropicaux. L'œstrus dure environ sept jours. Lors de la saison de reproduction, environ 
+                            cent copulations par jour sont réalisées.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-baby mr-2"></i>Gestation et naissance</h3>
+                        <p class="leading-relaxed">
+                            La femelle met bas tous les deux ans après 90 à 105 jours de gestation. Sa tanière peut être une 
+                            crevasse rocheuse, un arbre creux, ou des buissons denses. La portée est en général composée de 
+                            deux à trois petits. Ils ont une fourrure laineuse aux taches indistinctes et ne pèsent que de 
+                            430 à 600 grammes à la naissance. Ils ouvrent les yeux entre sept et dix jours.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4 animate-on-scroll">
+                    <div class="section-card">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-clock mr-2"></i>Développement</h3>
+                        <p class="leading-relaxed">
+                            La mère apprend à ses petits à chasser à partir de trois mois et ils restent avec elle jusqu'à la 
+                            prochaine portée. La maturité sexuelle est atteinte entre 24 et 36 mois pour les mâles, 30 à 36 mois 
+                            pour les femelles. 41 % des jeunes meurent avant l'âge d'un an.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-chart-line mr-2"></i>Longévité</h3>
+                        <p class="leading-relaxed">
+                            La longévité est de 12 à 15 ans dans la nature et jusqu'à 23 ans en captivité. Le record est de 
+                            26,5 ans pour deux panthères du Cirque Arlette Gruss.
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-fill-drip mr-2"></i>Mélanisme</h3>
+                        <p class="leading-relaxed">
+                            Le léopard noir, plus connu sous le nom de « panthère noire », est une variation de coloration liée 
+                            à une mutation génétique appelée mélanisme : la fourrure conserve ses taches, mais celles-ci ne sont 
+                            visibles que sous certains angles de lumière. Cette mutation est plus fréquente dans le Sud-Est de 
+                            l'Asie, notamment dans les forêts humides du Bengale et de Java.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION CONSERVATION ===== -->
+    <section id="conservation" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold" style="color: #c4956a;">Conservation</h2>
+            <div class="divider"></div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-6">
+                <div class="space-y-4">
+                    <div class="section-card animate-on-scroll" style="border-left: 4px solid #d97706;">
+                        <h3 class="text-xl font-bold mb-2" style="color: #e8a87c;"><i class="fas fa-exclamation-triangle mr-2"></i>Statut de conservation</h3>
+                        <p class="leading-relaxed">
+                            Le léopard est classé comme <strong>vulnérable</strong> (VU) par l'UICN (Union Internationale pour 
+                            la Conservation de la Nature). La taille de la population est perçue comme en baisse. Cinq 
+                            sous-espèces sont en danger ou en danger critique d'extinction : le léopard d'Arabie, le léopard 
+                            de l'Amour, la panthère de Java, la panthère de Ceylan et la panthère de Perse.
+                        </p>
+                    </div>
+                    <div class="section-card animate-on-scroll" style="border-left: 4px solid #dc2626;">
+                        <h3 class="text-xl font-bold mb-2" style="color: #f87171;"><i class="fas fa-skull-crossbones mr-2"></i>Menaces principales</h3>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Perte et fragmentation de l'habitat</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Braconnage pour la peau et les os</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Conflits avec les éleveurs et les populations locales</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Diminution des proies naturelles</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Urbanisation croissante</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-y-4 animate-on-scroll">
+                    <div class="section-card" style="border-left: 4px solid #16a34a;">
+                        <h3 class="text-xl font-bold mb-2" style="color: #86efac;"><i class="fas fa-shield-alt mr-2"></i>Actions de protection</h3>
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Création de réserves et parcs nationaux</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Programmes de reproduction en captivité</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Sensibilisation des communautés locales</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Lutte contre le braconnage</li>
+                            <li><i class="fas fa-caret-right mr-2" style="color: #c4956a;"></i>Corridors écologiques pour relier les populations</li>
+                        </ul>
+                    </div>
+                    <div class="section-card">
+                        <h3 class="text-xl font-bold mb-2" style="color: #c4956a;"><i class="fas fa-chart-pie mr-2"></i>Chiffres clés</h3>
+                        <p class="leading-relaxed">
+                            L'aire de répartition du léopard en Afrique s'est réduite de 36,7 % depuis le début du XX<sup>e</sup> siècle. 
+                            En Asie, les populations se réduisent de plus en plus en dehors des aires protégées. Sur la péninsule 
+                            Arabique, la population totale est estimée à moins de 200 individus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANECDOTES ===== -->
+    <section class="py-16 px-4" style="background-color: #c4956a;">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10" style="color: #2d1f18;">Le saviez-vous ?</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl card-hover" style="background-color: #b38455;">
+                    <i class="fas fa-swimmer text-3xl mb-3" style="color: #2d1f18;"></i>
+                    <p class="font-semibold" style="color: #2d1f18;">Le léopard est un excellent nageur et traverse souvent des rivières pour chasser ou se déplacer.</p>
+                </div>
+                <div class="p-6 rounded-xl card-hover" style="background-color: #b38455;">
+                    <i class="fas fa-volume-up text-3xl mb-3" style="color: #2d1f18;"></i>
+                    <p class="font-semibold" style="color: #2d1f18;">Son rugissement peut s'entendre jusqu'à 3 kilomètres dans la savane lors de nuits calmes.</p>
+                </div>
+                <div class="p-6 rounded-xl card-hover" style="background-color: #b38455;">
+                    <i class="fas fa-paw text-3xl mb-3" style="color: #2d1f18;"></i>
+                    <p class="font-semibold" style="color: #2d1f18;">Chaque léopard possède un motif de taches unique, comme les empreintes digitales chez l'humain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-10 px-4 text-center" style="background-color: #2d1f18; border-top: 1px solid #4e3828;">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <i class="fas fa-paw" style="color: #c4956a;"></i>
+                <span class="text-xl font-bold" style="color: #c4956a;">Le Léopard</span>
+            </div>
+            <p style="color: #bfa98e;">Panthera pardus — Une espèce à protéger</p>
+            <p class="mt-2 text-sm" style="color: #7a6355;">
+                Page créée à but éducatif — Contenu adapté de Wikipédia — 2026
+            </p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://fr.wikipedia.org/wiki/L%C3%A9opard" target="_blank" class="text-sm hover:underline" style="color: #c4956a;">Source Wikipédia</a>
+                <span style="color: #4e3828;">|</span>
+                <span class="text-sm" style="color: #7a6355;">Photos : PublicDomainPictures</span>
+            </div>
+        </div>
     </footer>
 
+    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Script simple pour la navigation fluide
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
+        // Menu mobile
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobileMenu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Barre de progression
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            var scrollBtn = document.getElementById('scrollToTop');
+            if (scrollTop > 500) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        // Retour en haut
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Animation au scroll
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // Smooth scroll pour tous les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                var target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-    </script>
 
+        // Message console
+        console.log('%c🐆 Bienvenue sur la page du Léopard !', 'font-size: 18px; color: #c4956a; font-weight: bold;');
+    </script>
 </body>
 </html>
